@@ -1,6 +1,6 @@
 # MyLMHost #
 
-This PowerShell module contains a set of functions for working the the legacy lmhosts file.
+This PowerShell module contains a set of functions for working with the legacy lmhosts file.
 
 The purpose of this file was to provide name resolution for Netbios computernames. Normally, this file is irrelevant in today's networking but remains as a legacy artifact. If you do not have a file already created, one will be the first time you run Set-LmhostsEntry.
 
