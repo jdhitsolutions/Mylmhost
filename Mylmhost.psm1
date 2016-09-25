@@ -18,7 +18,7 @@ Param(
 Begin {
     Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
     #display PSBoundparameters formatted nicely for Verbose output  
-   [string]$pb = ($PSBoundParameters | format-table -AutoSize | Out-String).TrimEnd()
+   [string]$pb = ($PSBoundParameters | Format-Table -AutoSize | Out-String).TrimEnd()
    Write-Verbose "[BEGIN  ] PSBoundparameters: `n$($pb.split("`n").Foreach({"$("`t"*4)$_"}) | out-string) `n" 
 
     if (-not (Test-Path $lmfile )) {
@@ -176,7 +176,7 @@ Begin {
     Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"     
     if (-not (Test-Path $lmfile )) {
       Write-Verbose "[BEGIN  ] Creating a new lmhosts file: $lmfile"
-      Set-Content -Value "#lmhosts file for resolving NETBIOS names `n" -Path $lmfile
+      Set-Content -Value "#lmhosts file for resolving NETBIOS names `n" -Path $lmfile -Encoding Ascii
     }
 
 } #begin
@@ -187,7 +187,7 @@ Process {
             
     Write-Verbose "[PROCESS] Check for existing entry $entry"
     #There should only be one or at least we'll only process one
-    $existing = Get-Content -Path $lmfile | select-string $Computername | Select -last 1
+    $existing = Get-Content -Path $lmfile | Select-String $Computername | Select -last 1
 
     if ($existing) {
         [string]$line = $existing.Line
@@ -226,7 +226,7 @@ Process {
     }
 
     If ($Passthru) {
-            Get-LmhostsEntry -Computername $Computername
+        Get-LmhostsEntry -Computername $Computername
      }
 } #process
 

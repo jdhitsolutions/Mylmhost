@@ -1,5 +1,8 @@
 #Changelog for Mylmhost
 
+v1.1
+Fixed encoding bug when creating a new file
+
 v1.0
 Initial release
 
