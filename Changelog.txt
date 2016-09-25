@@ -1,1 +1,5 @@
 #Changelog for Mylmhost
+
+v1.0
+Initial release
+
