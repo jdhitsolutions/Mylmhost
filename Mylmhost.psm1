@@ -244,3 +244,4 @@ $lmbackup = "$env:windir\system32\drivers\etc\lmhosts.bak"
 #IPv4 Regex pattern
 [regex]$IPv4Pattern = "(?<IP>\b(\d{1,3}\.){3}\d{1,3}\b)\s+(?<Computername>\b\S+\b)"
 
+
