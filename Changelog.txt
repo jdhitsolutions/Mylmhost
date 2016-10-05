@@ -1,5 +1,11 @@
 #Changelog for Mylmhost
 
+v1.2
+minor formatting changes
+Added aliases to Computername
+Modified Get-LMHostsEntry to handle multiple matches
+updated help documentation
+
 v1.1
 Fixed encoding bug when creating a new file
 

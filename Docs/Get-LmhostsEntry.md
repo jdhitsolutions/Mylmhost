@@ -77,12 +77,12 @@ Accept wildcard characters: False
 ```
 
 ### -Computername
-The computer's NETBIOS name.
+The computer's NETBIOS name. Wildcards aren't really supported but you can use a regular expression pattern.
 
 ```yaml
 Type: String
 Parameter Sets: Name
-Aliases: 
+Aliases: CN,Name
 
 Required: True
 Position: 0
@@ -125,7 +125,6 @@ Accept wildcard characters: False
 
 ### None
 
-
 ## OUTPUTS
 
 ### System.Object
@@ -138,6 +137,3 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 ## RELATED LINKS
 [Set-LmhostsEntry](Set-LmhostsEntry)
 [Remove-LmhostsEntry](Remove-LmhostsEntry)
-
-
-

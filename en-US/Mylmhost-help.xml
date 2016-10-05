@@ -31,8 +31,8 @@
 </command:parameter>
 </command:syntaxItem>
 <command:syntaxItem><maml:name>Get-LmhostsEntry</maml:name>
-<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Computername</maml:name>
-<maml:Description><maml:para>The computer's NETBIOS name.
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="CN, Name"><maml:name>Computername</maml:name>
+<maml:Description><maml:para>The computer's NETBIOS name. Wildcards aren't really supported but you can use a regular expression pattern.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -78,8 +78,8 @@
 <maml:uri /></dev:type>
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
-<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Computername</maml:name>
-<maml:Description><maml:para>The computer's NETBIOS name.
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="CN, Name"><maml:name>Computername</maml:name>
+<maml:Description><maml:para>The computer's NETBIOS name. Wildcards aren't really supported but you can use a regular expression pattern.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -179,7 +179,7 @@ MyServer     192.168.10.111</dev:code>
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Remove-LmhostsEntry</maml:name>
-<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Computername</maml:name>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="CN, Name"><maml:name>Computername</maml:name>
 <maml:Description><maml:para>The computer's NETBIOS name.
 </maml:para>
 </maml:Description>
@@ -233,7 +233,7 @@ MyServer     192.168.10.111</dev:code>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
-<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Computername</maml:name>
+<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="CN, Name"><maml:name>Computername</maml:name>
 <maml:Description><maml:para>The computer's NETBIOS name.
 </maml:para>
 </maml:Description>
@@ -289,13 +289,13 @@ MyServer     192.168.10.111</dev:code>
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; remove-LmhostsEntry Myserver</dev:code>
+<dev:code>PS C:\&gt; Remove-LmhostsEntry Myserver</dev:code>
 <dev:remarks><maml:para>Remove an entry by computername.
 </maml:para>
 </dev:remarks>
 </command:example>
 <command:example><maml:title>Example 2</maml:title>
-<dev:code>PS C:\&gt; remove-LmhostsEntry -ipaddress 192.168.10.111</dev:code>
+<dev:code>PS C:\&gt; Remove-LmhostsEntry -ipaddress 192.168.10.111</dev:code>
 <dev:remarks><maml:para>Remove an entry by IP address.
 </maml:para>
 </dev:remarks>
@@ -323,7 +323,7 @@ MyServer     192.168.10.111</dev:code>
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Set-LmhostsEntry</maml:name>
-<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Computername</maml:name>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="CN, Name"><maml:name>Computername</maml:name>
 <maml:Description><maml:para>The computer's NETBIOS name.
 </maml:para>
 </maml:Description>
@@ -367,7 +367,7 @@ MyServer     192.168.10.111</dev:code>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
-<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Computername</maml:name>
+<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="CN, Name"><maml:name>Computername</maml:name>
 <maml:Description><maml:para>The computer's NETBIOS name.
 </maml:para>
 </maml:Description>
@@ -461,4 +461,3 @@ MyServer     192.168.10.111</dev:code>
 </command:relatedLinks>
 </command:command>
 </helpItems>
-

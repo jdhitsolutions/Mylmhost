@@ -52,7 +52,7 @@ The computer's NETBIOS name.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases: CN,Name
 
 Required: True
 Position: 0
@@ -125,7 +125,6 @@ Accept wildcard characters: False
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 

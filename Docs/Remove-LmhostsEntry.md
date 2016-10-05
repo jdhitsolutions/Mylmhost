@@ -27,14 +27,14 @@ Use this command to delete an entry from the lmhosts file. You can specify the e
 
 ### Example 1
 ```
-PS C:\> remove-LmhostsEntry Myserver
+PS C:\> Remove-LmhostsEntry Myserver
 ```
 
 Remove an entry by computername.
 
 ### Example 2
 ```
-PS C:\> remove-LmhostsEntry -ipaddress 192.168.10.111
+PS C:\> Remove-LmhostsEntry -ipaddress 192.168.10.111
 ```
 
 Remove an entry by IP address.
@@ -47,7 +47,7 @@ The computer's NETBIOS name.
 ```yaml
 Type: String
 Parameter Sets: Name
-Aliases: 
+Aliases: CN,Name
 
 Required: True
 Position: 0
@@ -105,7 +105,6 @@ Accept wildcard characters: False
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 

@@ -3,9 +3,10 @@
 #region Main
 
 Function Get-LmhostsEntry {
-[cmdletbinding(DefaultParameterSetName="Name")]
+[cmdletbinding(DefaultParameterSetName="All")]
 Param(
 [Parameter(Position=0,Mandatory,ParameterSetName="Name")]
+[Alias("CN","Name")]
 [string]$Computername,
 [Parameter(Mandatory,ParameterSetName="IP")]
 [ValidatePattern("(\d{1,3}\.){3}\d{1,3}")]
@@ -19,7 +20,7 @@ Begin {
     Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
     #display PSBoundparameters formatted nicely for Verbose output  
    [string]$pb = ($PSBoundParameters | Format-Table -AutoSize | Out-String).TrimEnd()
-   Write-Verbose "[BEGIN  ] PSBoundparameters: `n$($pb.split("`n").Foreach({"$("`t"*4)$_"}) | out-string) `n" 
+   Write-Verbose "[BEGIN  ] PSBoundparameters: `n$($pb.split("`n").Foreach({"$("`t"*4)$_"}) | Out-String) `n" 
 
     if (-not (Test-Path $lmfile )) {
        Write-Warning "No file found at $lmfile. Use Set-LmhostsEntry to add an entry."
@@ -48,7 +49,7 @@ Process {
         } #switch
 
         if ($all) {
-            $data = get-content $lmfile | sls "^[^#.*]"
+            $data = Get-Content $lmfile | Select-String -pattern "^[^#.*]"
             if ($raw) {
                 $IPv4Pattern.matches($data).value
             }
@@ -65,21 +66,25 @@ Process {
         } #get all 
         else {
             Write-Verbose "[PROCESS] ...$find"
-            $entry = Get-Content -Path $lmfile | select-string $find | Select -last 1
+            $entry = 
+            Get-Content -Path $lmfile | Select-String -pattern $find -AllMatches
             if ($entry) {
-                Write-Verbose "[PROCESS] Found: $entry"
+                Write-Verbose "[PROCESS] Found one or more matching entries"
                 if ($Raw) {
+                    Write-Verbose "[PROCESS] Writing raw results to the pipeline"
                     #write the raw entry to the pipeline
                     $entry
                 }
                 else {
-                #split into parts and write a new object to the pipeline
-                $m= $IPv4Pattern.Match($entry)
-                [pscustomobject]@{
-                    Computername = $m.Groups["Computername"].value
-                    IPAddress = $m.Groups["IP"].value
-                }
-               }
+                    foreach ($item in $entry) {
+                      #split into parts and write a new object to the pipeline
+                      $m = $IPv4Pattern.Match($item)
+                     [pscustomobject]@{
+                        Computername = $m.Groups["Computername"].value
+                        IPAddress = $m.Groups["IP"].value
+                     }
+                    } #foreach
+               } #else
             } #if entry found
             else {
             Write-Warning "Entry for $($PSBoundParameters.values) not found."
@@ -97,6 +102,7 @@ Function Remove-LmhostsEntry {
 [cmdletbinding(SupportsShouldProcess,DefaultParameterSetName="Name")]
 Param(
 [Parameter(Position=0,Mandatory,ParameterSetName="Name")]
+[Alias("CN","Name")]
 [string]$Computername,
 [Parameter(Mandatory,ParameterSetName="IP")]
 [ValidatePattern("(\d{1,3}\.){3}\d{1,3}")]
@@ -106,7 +112,7 @@ Param(
 Begin {
     Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
     #display PSBoundparameters formatted nicely for Verbose output  
-    [string]$pb = ($PSBoundParameters | format-table -AutoSize | Out-String).TrimEnd()
+    [string]$pb = ($PSBoundParameters | Format-Table -AutoSize | Out-String).TrimEnd()
     Write-Verbose "[BEGIN  ] PSBoundparameters: `n$($pb.split("`n").Foreach({"$("`t"*4)$_"}) | Out-String) `n" 
 
     if (-not (Test-Path $lmfile )) {
@@ -159,12 +165,12 @@ End {
 
 } #close Remove
 
-
 Function Set-LmhostsEntry {
 
 [cmdletbinding(SupportsShouldProcess)]
 Param(
 [Parameter(Mandatory)]
+[Alias("CN","Name")]
 [string]$Computername,
 [Parameter(Mandatory)]
 [ValidatePattern("(\d{1,3}\.){3}\d{1,3}")]
@@ -199,7 +205,7 @@ Process {
          Write-Verbose "Existing Computername = $oldComputername"
          Write-Verbose "Existing IPAddress = $oldIP"   
         if (($oldIP -eq $IPAddress) -and ($OldComputername -eq $Computername)) {
-            Write-Host "The Computername and IP address matches the current entry. No changes needed." -ForegroundColor Magenta
+            Write-Host -foreground Green "The Computername and IP address matches the current entry. No changes needed." -ForegroundColor Magenta
             #exit
             Return
         }
