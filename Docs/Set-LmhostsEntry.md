@@ -5,13 +5,14 @@ schema: 2.0.0
 ---
 
 # Set-LmhostsEntry
+
 ## SYNOPSIS
-Add or modify an lmhosts entry
+Add or modify an lmhosts entry.
 
 ## SYNTAX
 
 ```
-Set-LmhostsEntry [-Computername] <String> [-IPAddress] <String> [-Passthru] [-WhatIf] [-Confirm]
+Set-LmhostsEntry [-Computername] <String> [-IPAddress] <String> [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,7 +44,6 @@ MyServer     192.168.10.111
 
 Modify an existing entry with a new IP address.
 
-
 ## PARAMETERS
 
 ### -Computername
@@ -52,12 +52,12 @@ The computer's NETBIOS name.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: CN,Name
+Aliases: CN, Name
 
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -72,12 +72,12 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
 ### -Passthru
-
+Write the updated object back to the pipeline.
 
 ```yaml
 Type: SwitchParameter
@@ -122,9 +122,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
-### None
+### System.string
 
 ## OUTPUTS
 
@@ -135,5 +138,7 @@ Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
-[Get-LmhostsEntry](Get-LmhostsEntry)
-[Remove-LmhostsEntry](Remove-LmhostsEntry)
+
+[Get-LmhostsEntry](Get-LmhostsEntry.md)
+
+[Remove-LmhostsEntry](Remove-LmhostsEntry.md)
