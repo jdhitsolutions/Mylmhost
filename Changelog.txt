@@ -1,5 +1,8 @@
 #Changelog for Mylmhost
 
+v1.3.0.1
+revised help
+
 v1.3.0.0
 Modified Get-LMHostEntry to default to Name parameter set
 modified commands to work in a pipelined expression so 

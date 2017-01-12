@@ -5,6 +5,7 @@ schema: 2.0.0
 ---
 
 # Get-LmhostsEntry
+
 ## SYNOPSIS
 Get an entry from the lmhosts file.
 
@@ -12,17 +13,17 @@ Get an entry from the lmhosts file.
 
 ### Name (Default)
 ```
-Get-LmhostsEntry [-Computername] <String> [-Raw]
+Get-LmhostsEntry [-Computername] <String> [-Raw] [<CommonParameters>]
 ```
 
 ### IP
 ```
-Get-LmhostsEntry -IPAddress <String> [-Raw]
+Get-LmhostsEntry -IPAddress <String> [-Raw] [<CommonParameters>]
 ```
 
 ### All
 ```
-Get-LmhostsEntry [-All] [-Raw]
+Get-LmhostsEntry [-All] [-Raw] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,6 +50,7 @@ Computername IPAddress
 ------------ ---------
 MyServer     192.168.10.111
 ```
+
 Get an entry by IP address.
 
 ### Example 3
@@ -57,6 +59,7 @@ PS C:\> Get-LmhostsEntry myserver -raw
 
 192.168.10.111  MyServer
 ```
+
 Get the entry as plain text.
 
 ## PARAMETERS
@@ -82,7 +85,7 @@ The computer's NETBIOS name. Wildcards aren't really supported but you can use a
 ```yaml
 Type: String
 Parameter Sets: Name
-Aliases: CN,Name
+Aliases: CN, Name
 
 Required: True
 Position: 0
@@ -121,6 +124,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
@@ -128,6 +134,7 @@ Accept wildcard characters: False
 ## OUTPUTS
 
 ### System.Object
+
 ### System.Text
 
 ## NOTES
@@ -135,5 +142,7 @@ Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
-[Set-LmhostsEntry](Set-LmhostsEntry)
-[Remove-LmhostsEntry](Remove-LmhostsEntry)
+
+[Set-LmhostsEntry](Set-LmhostsEntry.md)
+
+[Remove-LmhostsEntry](Remove-LmhostsEntry.md)

@@ -5,6 +5,7 @@ schema: 2.0.0
 ---
 
 # Remove-LmhostsEntry
+
 ## SYNOPSIS
 Remove an entry from the lmhosts file.
 
@@ -12,12 +13,12 @@ Remove an entry from the lmhosts file.
 
 ### Name (Default)
 ```
-Remove-LmhostsEntry [-Computername] <String> [-WhatIf] [-Confirm]
+Remove-LmhostsEntry [-Computername] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### IP
 ```
-Remove-LmhostsEntry -IPAddress <String> [-WhatIf] [-Confirm]
+Remove-LmhostsEntry -IPAddress <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -47,12 +48,12 @@ The computer's NETBIOS name.
 ```yaml
 Type: String
 Parameter Sets: Name
-Aliases: CN,Name
+Aliases: CN, Name
 
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -67,7 +68,7 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -88,7 +89,6 @@ Accept wildcard characters: False
 
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
@@ -102,9 +102,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
-### None
+### System.String
 
 ## OUTPUTS
 
@@ -115,6 +118,8 @@ Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
-[Get-LmhostsEntry](Get-LmhostsEntry)
-[Set-LmhostsEntry](Set-LmhostsEntry)
+
+[Get-LmhostsEntry](Get-LmhostsEntry.md)
+
+[Set-LmhostsEntry](Set-LmhostsEntry.md)
 
