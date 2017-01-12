@@ -1,5 +1,16 @@
 #Changelog for Mylmhost
 
+v1.3.0.0
+Modified Get-LMHostEntry to default to Name parameter set
+modified commands to work in a pipelined expression so 
+that you can GET | SET or GET | REMOVE
+minor changes to manifest
+copyright updates
+revised help
+updated README
+switched to semantic version numbers
+published to the PowerShell Gallery
+
 v1.2
 minor formatting changes
 Added aliases to Computername

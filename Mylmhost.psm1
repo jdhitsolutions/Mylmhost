@@ -1,9 +1,9 @@
-#requires -version 5.0
+#requires -version 5.0.0.0
 
 #region Main
 
 Function Get-LmhostsEntry {
-[cmdletbinding(DefaultParameterSetName="All")]
+[cmdletbinding(DefaultParameterSetName="Name")]
 Param(
 [Parameter(Position=0,Mandatory,ParameterSetName="Name")]
 [Alias("CN","Name")]
@@ -99,12 +99,13 @@ End {
 } #close Get
 
 Function Remove-LmhostsEntry {
+
 [cmdletbinding(SupportsShouldProcess,DefaultParameterSetName="Name")]
 Param(
-[Parameter(Position=0,Mandatory,ParameterSetName="Name")]
+[Parameter(Position=0,Mandatory,ParameterSetName="Name",ValueFromPipelineByPropertyName)]
 [Alias("CN","Name")]
 [string]$Computername,
-[Parameter(Mandatory,ParameterSetName="IP")]
+[Parameter(Mandatory,ParameterSetName="IP",ValueFromPipelineByPropertyName)]
 [ValidatePattern("(\d{1,3}\.){3}\d{1,3}")]
 [string]$IPAddress
 )
@@ -169,10 +170,10 @@ Function Set-LmhostsEntry {
 
 [cmdletbinding(SupportsShouldProcess)]
 Param(
-[Parameter(Mandatory)]
+[Parameter(Mandatory,ValueFromPipelineByPropertyName)]
 [Alias("CN","Name")]
 [string]$Computername,
-[Parameter(Mandatory)]
+[Parameter(Mandatory,ValueFromPipelineByPropertyName)]
 [ValidatePattern("(\d{1,3}\.){3}\d{1,3}")]
 [string]$IPAddress,
 [switch]$Passthru
@@ -189,6 +190,10 @@ Begin {
 
 Process {
 
+    #display PSBoundparameters formatted nicely for Verbose output  
+    [string]$pb = ($PSBoundParameters | Format-Table -AutoSize | Out-String).TrimEnd()
+    Write-Verbose "[PROCESS] PSBoundparameters: `n$($pb.split("`n").Foreach({"$("`t"*2)$_"}) | Out-String) `n" 
+    
     $entry = "$IPAddress  $Computername"
             
     Write-Verbose "[PROCESS] Check for existing entry $entry"
@@ -243,10 +248,15 @@ End {
 
 #endregion
 
-#define variables
+
+#define variables for internal use. These are not exported
+
+#path to lmhosts file
 $lmfile = "$env:windir\system32\drivers\etc\lmhosts"
+
 #define a backup file variable
 $lmbackup = "$env:windir\system32\drivers\etc\lmhosts.bak"
+
 #IPv4 Regex pattern
 [regex]$IPv4Pattern = "(?<IP>\b(\d{1,3}\.){3}\d{1,3}\b)\s+(?<Computername>\b\S+\b)"
 
