@@ -1,5 +1,10 @@
 #Changelog for Mylmhost
 
+v1.3.1
+Minor changes to modify cmdlets to use full name
+Modified Write-Host warning to use Write-warning
+Minor updates to README
+
 v1.3.0.2
 minor manifest changes
 
