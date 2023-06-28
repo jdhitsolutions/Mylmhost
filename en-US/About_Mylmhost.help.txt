@@ -2,23 +2,22 @@ TOPIC
     About_Mylmhost
 
 SHORT DESCRIPTION
-    This PowerShell module contains a set of functions for working with the 
-    legacy lmhosts file. 
-    
+    This PowerShell module contains a set of functions for working with the
+    legacy lmhosts file.
+
 LONG DESCRIPTION
-    The purpose of this file was to provide name resolution for Netbios 
-    computernames. Normally, this file is irrelevant in today's networking but
-    remains as a legacy artifact. If you do not have a file already created, 
+    The purpose of this file was to provide name resolution for Netbios
+    computer names. Normally, this file is irrelevant in today's networking but
+    remains a legacy artifact. If you do not have a file already created,
     one will be the first time you run Set-LmhostsEntry.
 
     There may be a few scenarios where using lmhosts still has value. You can
-    use this file to provide name resolution for a computer that otherwise 
+    use this file to provide name resolution for a computer that otherwise
     can't be resolved. For example, if you are running a virtual machine on a
-    private or NAT'd network, you can't normally resolve the name. But by add-
-    ing an lmhosts entry, you can. 
+    private or NAT'd network, you can't normally resolve the name. But by adding an lmhosts entry, you can.
 
-    Once you can resolve the name, then you can create a PSSession using the 
-    computername instead of the IPAddress.
+    Once you can resolve the name, then you can create a PSSession using the
+    computer name instead of the IPAddress.
 
     THE COMMANDS
     The commands will convert lmhosts entries into custom objects
@@ -32,21 +31,21 @@ LONG DESCRIPTION
     Or you can use the -Raw parameter to display the information as it appears
     in the lmhosts file.
 
-    When running a command that will modify the lmhosts file, a backup copy 
+    When running a command that will modify the lmhosts file, a backup copy
     will automatically be created in the System32 folder. The backup copy will
     be overwritten as needed.
 
     LIMITATIONS
-    It is assumed that your lmhosts file is well formed and that you do not 
-    have duplicate computer names and IP address. It is also assumed that any 
+    It is assumed that your lmhosts file is well formed and that you do not
+    have duplicate computer names and IP addresses. It is also assumed that any
     comments, using the # character, start at the beginning of the line.
 
-    These commands do not take into account any directives like INCLUDE, #PRE 
+    These commands do not take into account any directives like INCLUDE, #PRE
     OR #DOM.
 
-    
+
 SEE ALSO
 Get-LmhostsEntry
-Set-LMhostsEntry
+Set-LmhostsEntry
 Remove-LMHostsEntry
-
+Open-LmhostsFile
