@@ -2,16 +2,25 @@ Function Remove-LmhostsEntry {
 
     [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = 'Name')]
     Param(
-        [Parameter(Position = 0, Mandatory, ParameterSetName = 'Name', ValueFromPipelineByPropertyName)]
+        [Parameter(
+            Position = 0,
+            Mandatory,
+            ParameterSetName = 'Name',
+            ValueFromPipelineByPropertyName
+        )]
         [Alias('CN', 'Name')]
         [String]$Computername,
-        [Parameter(Mandatory, ParameterSetName = 'IP', ValueFromPipelineByPropertyName)]
+        [Parameter(
+            Mandatory,
+            ParameterSetName = 'IP',
+            ValueFromPipelineByPropertyName
+        )]
         [ValidatePattern('(\d{1,3}\.){3}\d{1,3}')]
         [String]$IPAddress
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting: $($MyInvocation.MyCommand)"
 
         if (-not (Test-Path $lmfile )) {
             Write-Warning "No file found at $lmfile. Use Set-LmhostsEntry to add an entry."
@@ -24,13 +33,11 @@ Function Remove-LmhostsEntry {
     } #begin
 
     Process {
-
         If ($Verified) {
-            Write-Verbose "[PROCESS] Removing entry by $($PSCmdlet.ParameterSetName)"
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Removing entry by $($PSCmdlet.ParameterSetName)"
 
             $FindParams = @{Raw = $True }
             Switch ($PSCmdlet.ParameterSetName) {
-
                 'Name' {
                     $FindParams.Add('Computername', $PSBoundParameters.item('Computername'))
                 } #computername
@@ -41,15 +48,14 @@ Function Remove-LmhostsEntry {
 
             } #switch
 
-            Write-Verbose 'Searching for entry'
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Searching for entry"
             $entry = Get-LmhostsEntry @FindParams
             if ($entry) {
-
-                Write-Verbose '[PROCESS] Creating a backup file copy'
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Creating a backup file copy"
                 Copy-Item -Path $lmfile -Destination $lmbackup
                 $content = Get-Content -Path $lmfile
-                Write-Verbose "[PROCESS] Removing $get"
-            ($content -replace $entry, '') | Out-File -FilePath $lmfile -Encoding ascii
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Removing $get"
+                ($content -replace $entry, '') | Out-File -FilePath $lmfile -Encoding ascii
             }
 
         } #if verified
@@ -57,7 +63,7 @@ Function Remove-LmhostsEntry {
     }# process
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 
 }
